@@ -733,6 +733,64 @@
     .lightbox-nav.prev { left: 20px; }
     .lightbox-nav.next { right: 20px; }
 
+    /* ===================== BACKSOUND ===================== */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .bgm-player {
+      position: fixed;
+      left: 22px;
+      bottom: 22px;
+      z-index: 95;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 8px 16px 8px 8px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+
+    .bgm-toggle {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      border: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-700), var(--green-600));
+      color: #fff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 16px rgba(22, 101, 52, 0.28);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .bgm-toggle:hover { transform: scale(1.07); }
+    .bgm-toggle svg { width: 18px; height: 18px; grid-area: 1 / 1; }
+    .bgm-toggle .ico-pause { display: none; }
+    .bgm-toggle.is-playing .ico-play { display: none; }
+    .bgm-toggle.is-playing .ico-pause { display: block; }
+
+    .bgm-meta { display: flex; flex-direction: column; line-height: 1.25; white-space: nowrap; }
+    .bgm-meta strong { font-size: 0.82rem; color: var(--green-900); }
+    .bgm-meta small { font-size: 0.7rem; color: var(--ink-soft); }
+
+    .bgm-volwrap { display: grid; place-items: center; }
+    .bgm-volwrap input[type="range"] {
+      width: 86px;
+      accent-color: var(--green-600);
+      cursor: pointer;
+    }
+
     /* ===================== TO TOP ===================== */
     .to-top {
       position: fixed;
@@ -816,6 +874,15 @@
       .lightbox-nav { width: 40px; height: 40px; }
       .lightbox-nav.prev { left: 6px; }
       .lightbox-nav.next { right: 6px; }
+      .bgm-player {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        justify-content: flex-start;
+        padding: 8px 12px;
+      }
+      .bgm-volwrap { margin-left: auto; }
+      .bgm-volwrap input[type="range"] { width: 68px; }
     }
 
     /* ===================== AKSESIBILITAS ===================== */
@@ -1423,6 +1490,24 @@
 
   <button class="to-top" id="toTop" aria-label="Kembali ke atas">&#8593;</button>
 
+  <!-- ============ BACKSOUND / MUSIK AMBIENT ============ -->
+  <div class="bgm-player" id="bgmPlayer">
+    <button class="bgm-toggle" id="bgmToggle" type="button" aria-label="Putar backsound" aria-pressed="false">
+      <svg class="ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ico-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+    </button>
+    <div class="bgm-meta">
+      <strong>Backsound</strong>
+      <small id="bgmState">Musik: Mati</small>
+    </div>
+    <label class="bgm-volwrap">
+      <span class="sr-only">Volume backsound</span>
+      <input type="range" id="bgmVolume" min="0" max="100" value="40" step="5" aria-label="Volume backsound">
+    </label>
+  </div>
+
+  <audio id="bgm" src="media/backsound-alam.mp3" loop preload="auto"></audio>
+
   <!-- =========================================================
        JavaScript internal (satu file HTML)
        Bukit Pamoroan - Tugas Pertemuan 3
@@ -1629,6 +1714,106 @@
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
       }
+
+      /* ---------- 9. BACKSOUND / MUSIK AMBIENT ---------- */
+      var bgm = document.getElementById("bgm");
+      var bgmToggle = document.getElementById("bgmToggle");
+      var bgmVol = document.getElementById("bgmVolume");
+      var bgmState = document.getElementById("bgmState");
+      var KEY_ON = "bp-bgm-on";
+      var KEY_VOL = "bp-bgm-volume";
+      var DUCK_VOL = 0.12;      // volume saat video diputar
+      var ducked = false;
+
+      function readStore(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+      }
+      function writeStore(key, val) {
+        try { localStorage.setItem(key, val); } catch (e) { /* mode privat */ }
+      }
+
+      function baseVolume() {
+        return bgmVol ? Math.min(1, Math.max(0, Number(bgmVol.value) / 100)) : 0.4;
+      }
+
+      function applyVolume() {
+        if (!bgm) return;
+        bgm.volume = ducked ? Math.min(DUCK_VOL, baseVolume()) : baseVolume();
+      }
+
+      function renderState() {
+        var playing = !!bgm && !bgm.paused;
+        if (bgmToggle) {
+          bgmToggle.classList.toggle("is-playing", playing);
+          bgmToggle.setAttribute("aria-pressed", playing ? "true" : "false");
+          bgmToggle.setAttribute("aria-label", playing ? "Matikan backsound" : "Putar backsound");
+        }
+        if (bgmState) {
+          bgmState.textContent = playing
+            ? (ducked ? "Musik: Nyala (senang video)" : "Musik: Nyala")
+            : "Musik: Mati";
+        }
+      }
+
+      function startBgm(save) {
+        if (!bgm) return;
+        var p = bgm.play();
+        if (p && p.catch) {
+          p.catch(function () {
+            // browser memblokir autoplay -> tampilkan tombol untuk diklik manual
+            if (save) writeStore(KEY_ON, "off");
+            renderState();
+          });
+        }
+        if (save) writeStore(KEY_ON, "on");
+        renderState();
+      }
+
+      function stopBgm(save) {
+        if (!bgm) return;
+        bgm.pause();
+        if (save) writeStore(KEY_ON, "off");
+        renderState();
+      }
+
+      function setDuck(on) {
+        ducked = !!on;
+        applyVolume();
+        renderState();
+      }
+
+      if (bgm) {
+        // volume: pulihkan dari storage
+        var savedVol = readStore(KEY_VOL);
+        if (savedVol !== null && bgmVol) bgmVol.value = savedVol;
+
+        if (bgmToggle) {
+          bgmToggle.addEventListener("click", function () {
+            if (bgm.paused) startBgm(true); else stopBgm(true);
+          });
+        }
+
+        if (bgmVol) {
+          bgmVol.addEventListener("input", function () {
+            applyVolume();
+            writeStore(KEY_VOL, bgmVol.value);
+          });
+        }
+
+        // musik pelan saat video diputar, kembali normal setelah selesai
+        if (mainVideo) {
+          mainVideo.addEventListener("play", function () { setDuck(true); });
+          ["pause", "ended", "emptied"].forEach(function (ev) {
+            mainVideo.addEventListener(ev, function () { setDuck(false); });
+          });
+        }
+
+        // Attempt otomatis jika sebelumnya user menyalakan (browser bisa menolak)
+        if (readStore(KEY_ON) === "on") startBgm(false);
+      }
+
+      applyVolume();
+      renderState();
     })();
   </script>
 </body>

@@ -8,6 +8,16 @@
     "Video iPhone (.MOV, codec HEVC/H.265) ditranscode ke MP4 H.264, 720p, CRF 30 agar bisa diputar di browser.",
     "Setiap video memiliki poster thumbnail (1 frame pada detik ke-1)."
   ],
+  "audio": [
+    {
+      "file": "backsound-alam.mp3",
+      "duration_seconds": 48,
+      "format": "MP3 mono 32 kHz, 112 kbps",
+      "loop": "seamless",
+      "source": "Disintesis sendiri (Python + numpy + lameenc), bukan file unduhan",
+      "layers": ["angin (filtered noise + gust)", "gemuruh air + gelembung", "kicauan burung (synth chirp)", "drone hangat 110/165/220 Hz"]
+    }
+  ],
   "images": [
     { "file": "foto-1.jpg", "source": "35AE5D1C-095E-4BB6-ADE1-145620591FB2.jpg" },
     { "file": "foto-2.jpg", "source": "BDB00C67-AE7A-4B0A-9A75-4B11B7958D17.jpg" },

@@ -30,10 +30,11 @@ Fakultas Teknik — Universitas Majalengka
 ├── README.md
 └── tugas pertemuan 3/            # Promosi Wisata "Bukit Pamoroan" (satu file HTML)
     ├── index.html               # Halaman utama: HTML + CSS internal + JS internal
-    └── media/                   # Foto & video kegiatan wisata
+    └── media/                   # Foto, video, dan backsound
         ├── foto-1.jpg ... foto-7.jpg
         ├── video-1.mp4 ... video-11.mp4
         ├── video-N-poster.jpg    # thumbnail tiap video
+        ├── backsound-alam.mp3     # musik ambient (loop seamless, 48 detik)
         └── manifest.json         # daftar nama file & catatan konversi
 ```
 
@@ -68,7 +69,20 @@ file yang sama, tidak ada file terpisah. Isi halaman:
 | ---------- | --------------------------------------------------------------------- |
 | HTML5      | Struktur halaman, *semantic tag*, elemen `<video>`, form                 |
 | CSS3       | Layout responsif, *flexbox*/*grid*, orientasi potret, animasi, tema warna |
-| JavaScript | Menu mobile, scroll spy, *lightbox*, pemilih video, validasi form       |
+| JavaScript | Menu mobile, scroll spy, *lightbox*, pemilih video, backsound, validasi form |
+
+**Backsound**
+
+Latar belakang halaman memakai musik ambient `media/backsound-alam.mp3`
+(sintesis sendiri: angin, gemuruh air, kicauan burung, dan drone hangat,
+durasi 48 detik dengan *loop* seamless).fitur pemutarnya:
+
+| Fitur                  | Penjelasan                                                                     |
+| ---------------------- | ------------------------------------------------------------------------------ |
+| Tombol play/pause      | Panel backsound di pojok kiri bawah + slider volume                             |
+| Redup otomatis         | Volume turun menjadi 12% selama video diputar, kembali normal setelah selesai   |
+| Status tersimpan       | Pilihan nyala/mati dan volume disimpan di `localStorage`, jadi tidak perlu klik ulang saat *refresh* |
+| Anti-autoplay          | Mematuhi kebijakan browser: musik baru mulai setelah user menekan tombol |
 
 **Catatan Orientasi Foto (Potret)**
 
@@ -85,6 +99,7 @@ sehingga semua foto tampak vertikal dan konsisten di setiap bagian halaman.
 | Video kegiatan           | 11 video dengan pemilih thumbnail potret, tautan unduh, dan tautan folder Google Drive |
 | Paket wisata            | 4 kartu paket (gambar potret, deskripsi, durasi, kapasitas, harga, fasilitas)   |
 | Formulir booking        | Validasi isian formulir dan pesan konfirmasi                                     |
+| Backsound ambient       | Musik latar (angin, air, kicauan burung) dengan tombol play/pause, slider volume, redup otomatis saat video diputar, dan status tersimpan |
 | Tombol kembali ke atas  | Muncul otomatis setelah halaman di-scroll                                       |
 
 **Cara Menjalankan**
