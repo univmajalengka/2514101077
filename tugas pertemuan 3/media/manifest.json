@@ -1,89 +1,33 @@
 {
+  "destination": "Bukit Pamoroan, Kabupaten Majalengka, Jawa Barat",
+  "source_folder": "https://drive.google.com/drive/folders/13Qx3kg8sOEAPA_JXUP_Ra0YuYjFK_Zze",
+  "downloaded_by": "Faiz Ahmad Risqullah (2514101077)",
+  "conversion_notes": [
+    "Foto iPhone (.HEIC) dikonversi ke JPEG melalui endpoint thumbnail Google Drive karena format HEIC tidak didukung browser.",
+    "Foto JPEG diperkecil ke lebar maksimal 1280 px, kualitas 82.",
+    "Video iPhone (.MOV, codec HEVC/H.265) ditranscode ke MP4 H.264, 720p, CRF 30 agar bisa diputar di browser.",
+    "Setiap video memiliki poster thumbnail (1 frame pada detik ke-1)."
+  ],
   "images": [
-    {
-      "file": "foto-1.jpg",
-      "source": "35AE5D1C-095E-4BB6-ADE1-145620591FB2.jpg"
-    },
-    {
-      "file": "foto-2.jpg",
-      "source": "BDB00C67-AE7A-4B0A-9A75-4B11B7958D17.jpg"
-    },
-    {
-      "file": "foto-3.jpg",
-      "source": "IMG_4945_thumb.jpg"
-    },
-    {
-      "file": "foto-4.jpg",
-      "source": "IMG_9499_thumb.jpg"
-    },
-    {
-      "file": "foto-5.jpg",
-      "source": "IMG_9514_thumb.jpg"
-    },
-    {
-      "file": "foto-6.jpg",
-      "source": "IMG_9572_thumb.jpg"
-    },
-    {
-      "file": "foto-7.jpg",
-      "source": "ca4c8ee0-a20c-4122-8da1-bfa8643298f6.jpg"
-    }
+    { "file": "foto-1.jpg", "source": "35AE5D1C-095E-4BB6-ADE1-145620591FB2.jpg" },
+    { "file": "foto-2.jpg", "source": "BDB00C67-AE7A-4B0A-9A75-4B11B7958D17.jpg" },
+    { "file": "foto-3.jpg", "source": "IMG_4945.HEIC", "drive_id": "1bx-Svx9wBu8TjiNyUMKBjYo17rJ1CM2V" },
+    { "file": "foto-4.jpg", "source": "IMG_9499.heic", "drive_id": "16LKnt4NmkQOOX16WVgLjS5GJKghg8uo2" },
+    { "file": "foto-5.jpg", "source": "IMG_9514.heic", "drive_id": "1tDvD_hM_EPSw74ZDsVk1PMzD4NRN81sB" },
+    { "file": "foto-6.jpg", "source": "IMG_9572.heic", "drive_id": "1yjbNeCWge2x3Co3ySs5JYX9D8knkIfx7" },
+    { "file": "foto-7.jpg", "source": "ca4c8ee0-a20c-4122-8da1-bfa8643298f6.jpg" }
   ],
   "videos": [
-    {
-      "file": "video-1.mp4",
-      "poster": "video-1-poster.jpg",
-      "source": "5198ffcc-cd47-4a7f-9d8d-69122a1df1ad.mp4"
-    },
-    {
-      "file": "video-2.mp4",
-      "poster": "video-2-poster.jpg",
-      "source": "IMG_4840.MOV"
-    },
-    {
-      "file": "video-3.mp4",
-      "poster": "video-3-poster.jpg",
-      "source": "IMG_4849.MOV"
-    },
-    {
-      "file": "video-4.mp4",
-      "poster": "video-4-poster.jpg",
-      "source": "IMG_4853.MOV"
-    },
-    {
-      "file": "video-5.mp4",
-      "poster": "video-5-poster.jpg",
-      "source": "IMG_4858.MOV"
-    },
-    {
-      "file": "video-6.mp4",
-      "poster": "video-6-poster.jpg",
-      "source": "IMG_4863.MOV"
-    },
-    {
-      "file": "video-7.mp4",
-      "poster": "video-7-poster.jpg",
-      "source": "IMG_4868.MOV"
-    },
-    {
-      "file": "video-8.mp4",
-      "poster": "video-8-poster.jpg",
-      "source": "IMG_4870.MOV"
-    },
-    {
-      "file": "video-9.mp4",
-      "poster": "video-9-poster.jpg",
-      "source": "IMG_4928.MOV"
-    },
-    {
-      "file": "video-10.mp4",
-      "poster": "video-10-poster.jpg",
-      "source": "IMG_4935.MOV"
-    },
-    {
-      "file": "video-11.mp4",
-      "poster": "video-11-poster.jpg",
-      "source": "IMG_4969.MOV"
-    }
+    { "file": "video-1.mp4", "poster": "video-1-poster.jpg", "source": "5198ffcc-cd47-4a7f-9d8d-69122a1df1ad.mp4", "codec_in": "h264" },
+    { "file": "video-2.mp4", "poster": "video-2-poster.jpg", "source": "IMG_4840.MOV", "codec_in": "hevc" },
+    { "file": "video-3.mp4", "poster": "video-3-poster.jpg", "source": "IMG_4849.MOV", "codec_in": "hevc" },
+    { "file": "video-4.mp4", "poster": "video-4-poster.jpg", "source": "IMG_4853.MOV", "codec_in": "hevc" },
+    { "file": "video-5.mp4", "poster": "video-5-poster.jpg", "source": "IMG_4858.MOV", "codec_in": "hevc" },
+    { "file": "video-6.mp4", "poster": "video-6-poster.jpg", "source": "IMG_4863.MOV", "codec_in": "hevc" },
+    { "file": "video-7.mp4", "poster": "video-7-poster.jpg", "source": "IMG_4868.MOV", "codec_in": "hevc" },
+    { "file": "video-8.mp4", "poster": "video-8-poster.jpg", "source": "IMG_4870.MOV", "codec_in": "hevc" },
+    { "file": "video-9.mp4", "poster": "video-9-poster.jpg", "source": "IMG_4928.MOV", "codec_in": "hevc" },
+    { "file": "video-10.mp4", "poster": "video-10-poster.jpg", "source": "IMG_4935.MOV", "codec_in": "hevc" },
+    { "file": "video-11.mp4", "poster": "video-11-poster.jpg", "source": "IMG_4969.MOV", "codec_in": "hevc" }
   ]
 }

@@ -28,11 +28,15 @@ Fakultas Teknik — Universitas Majalengka
 ```
 2514101077/
 ├── README.md
-└── tugas pertemuan 3/          # Promosi Wisata "Bukit Pamoroan" (HTML)
-    ├── index.html             # Halaman utama (User Interface)
-    ├── style.css              # Tampilan halaman
-    ├── script.js              # Interaksi menu & lightbox galeri
-    └── media/                 # Foto & video kegiatan wisata
+└── tugas pertemuan 3/            # Promosi Wisata "Bukit Pamoroan" (HTML)
+    ├── index.html               # Halaman utama (User Interface)
+    ├── style.css                # Tampilan/layout halaman
+    ├── script.js                # Interaksi: menu, lightbox, video, form
+    └── media/                   # Foto & video kegiatan wisata
+        ├── foto-1.jpg ... foto-7.jpg
+        ├── video-1.mp4 ... video-11.mp4
+        ├── video-N-poster.jpg    # thumbnail tiap video
+        └── manifest.json         # daftar nama file & catatan konversi
 ```
 
 ---
@@ -57,15 +61,26 @@ menggunakan **HTML** (disertai CSS dan JavaScript), yang memuat:
 1. **Menu aplikasi** — navigasi antar section (Beranda, Tentang, Galeri, Video, Paket Wisata, Kontak)
 2. **Foto kegiatan wisata** — galeri foto yang bisa diklik untuk melihat ukuran besar (*lightbox*)
 3. **Link video** — pemutar video kegiatan wisata di Bukit Pamoroan
-4. **Daftar paket wisata** — beberapa paket-services yang masing-masing dilengkapi **gambar** dan **deskripsi**
+4. **Daftar paket wisata** — 4 paket wisata, masing-masing dilengkapi **gambar**, **deskripsi**, durasi, kapasitas, dan harga
 
 **Teknologi yang Digunakan**
 
-| Teknologi    | Keterangan                                            |
-| ------------ | ----------------------------------------------------- |
-| HTML5        | Struktur halaman, semantic tag, elemen `<video>`      |
-| CSS3         | Layout responsif, *flexbox*/*grid*, animasi, tema warna |
-| JavaScript   | Navigasi menu mobile, *lightbox*, filter paket         |
+| Teknologi   | Keterangan                                                   |
+| ---------- | ----------------------------------------------------------- |
+| HTML5      | Struktur halaman, *semantic tag*, elemen `<video>`, form       |
+| CSS3       | Layout responsif, *flexbox*/*grid*, animasi, tema warna         |
+| JavaScript | Menu mobile, scroll spy, *lightbox*, pemilih video, validasi form |
+
+**Fitur Halaman**
+
+| Fitur                    | Penjelasan                                                          |
+| ------------------------ | ------------------------------------------------------------------- |
+| Menu aplikasi           | Navigasi ke 6 section plus tombol Pesan Sekarang; berubah menjadi menu geser pada layar kecil |
+| Galeri foto              | 7 foto kegiatan dengan *lightbox* (klik, panah kiri/kanan, tombol `Esc`) |
+| Video kegiatan           | 11 video dengan pemilih thumbnail, tautan unduh, dan tautan folder Google Drive |
+| Paket wisata            | 4 kartu paket (gambar, deskripsi, durasi, kapasitas, harga, fasilitas) |
+| Formulir booking        | Validasi isian formulir dan pesan konfirmasi                              |
+| Tombol kembali ke atas  | Muncul otomatis setelah halaman di-scroll                                |
 
 **Cara Menjalankan**
 
