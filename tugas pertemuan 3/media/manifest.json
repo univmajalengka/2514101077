@@ -1,0 +1,89 @@
+{
+  "images": [
+    {
+      "file": "foto-1.jpg",
+      "source": "35AE5D1C-095E-4BB6-ADE1-145620591FB2.jpg"
+    },
+    {
+      "file": "foto-2.jpg",
+      "source": "BDB00C67-AE7A-4B0A-9A75-4B11B7958D17.jpg"
+    },
+    {
+      "file": "foto-3.jpg",
+      "source": "IMG_4945_thumb.jpg"
+    },
+    {
+      "file": "foto-4.jpg",
+      "source": "IMG_9499_thumb.jpg"
+    },
+    {
+      "file": "foto-5.jpg",
+      "source": "IMG_9514_thumb.jpg"
+    },
+    {
+      "file": "foto-6.jpg",
+      "source": "IMG_9572_thumb.jpg"
+    },
+    {
+      "file": "foto-7.jpg",
+      "source": "ca4c8ee0-a20c-4122-8da1-bfa8643298f6.jpg"
+    }
+  ],
+  "videos": [
+    {
+      "file": "video-1.mp4",
+      "poster": "video-1-poster.jpg",
+      "source": "5198ffcc-cd47-4a7f-9d8d-69122a1df1ad.mp4"
+    },
+    {
+      "file": "video-2.mp4",
+      "poster": "video-2-poster.jpg",
+      "source": "IMG_4840.MOV"
+    },
+    {
+      "file": "video-3.mp4",
+      "poster": "video-3-poster.jpg",
+      "source": "IMG_4849.MOV"
+    },
+    {
+      "file": "video-4.mp4",
+      "poster": "video-4-poster.jpg",
+      "source": "IMG_4853.MOV"
+    },
+    {
+      "file": "video-5.mp4",
+      "poster": "video-5-poster.jpg",
+      "source": "IMG_4858.MOV"
+    },
+    {
+      "file": "video-6.mp4",
+      "poster": "video-6-poster.jpg",
+      "source": "IMG_4863.MOV"
+    },
+    {
+      "file": "video-7.mp4",
+      "poster": "video-7-poster.jpg",
+      "source": "IMG_4868.MOV"
+    },
+    {
+      "file": "video-8.mp4",
+      "poster": "video-8-poster.jpg",
+      "source": "IMG_4870.MOV"
+    },
+    {
+      "file": "video-9.mp4",
+      "poster": "video-9-poster.jpg",
+      "source": "IMG_4928.MOV"
+    },
+    {
+      "file": "video-10.mp4",
+      "poster": "video-10-poster.jpg",
+      "source": "IMG_4935.MOV"
+    },
+    {
+      "file": "video-11.mp4",
+      "poster": "video-11-poster.jpg",
+      "source": "IMG_4969.MOV"
+    }
+  ]
+}
