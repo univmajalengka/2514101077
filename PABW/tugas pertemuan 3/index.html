@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bukit Pamoroan - destinasi wisata alam di Majalengka. Promo paket wisata, galeri foto kegiatan, dan video dokumentasi.">
+  <meta name="author" content="Faiz Ahmad Risqullah - 2514101077">
+  <title>Bukit Pamoroan - Promosi Destinasi Wisata Majalengka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- =========================================================
+       CSS internal (satu file HTML)
+       Bukit Pamoroan - Promosi Wisata (Tugas Pertemuan 3)
+       Nama  : Faiz Ahmad Risqullah
+       NPM   : 2514101077
+       Prodi : Informatika - Fakultas Teknik, Universitas Majalengka
+       Catatan: semua foto ditampilkan dengan orientasi POTRET
+                (aspect-ratio 3:4 + object-fit: cover)
+       ========================================================= -->
+  <style>
+    :root {
+      --blue: #3B82F6;
+      --blue-dark: #1D4ED8;
+      --blue-light: #DBEAFE;
+      --yellow: #FFDD00;
+      --yellow-light: #FFF9DB;
+      --green: #4ADE80;
+      --green-dark: #16A34A;
+      --green-light: #DCFCE7;
+      --ink: #000000;
+      --ink-soft: #1a1a1a;
+      --border: #000000;
+      --border-w: 3px;
+      --bg: #FFF9DB;
+      --bg-alt: #DBEAFE;
+      --bg-white: #ffffff;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 5px 5px 0 #000;
+      --shadow-lg: 8px 8px 0 #000;
+      --shadow-hover: 7px 7px 0 #000;
+      --container: 1180px;
+      --nav-h: 72px;
+      --potret: 3 / 4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+
+    body {
+      font-family: "Poppins", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { font-family: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    .section { padding: 84px 0; }
+    .section-alt { background: var(--bg-alt); border-top: var(--border-w) solid var(--border); border-bottom: var(--border-w) solid var(--border); }
+
+    .text-accent { color: var(--blue-dark); }
+
+    /* ===================== BUTTON ===================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 26px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: var(--border-w) solid var(--border);
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-hover); }
+    .btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .btn-ghost {
+      background: var(--bg-white);
+      color: var(--ink);
+    }
+
+    /* ===================== NAVBAR ===================== */
+    .navbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--nav-h);
+      background: var(--yellow);
+      border-bottom: var(--border-w) solid var(--border);
+      z-index: 100;
+      transition: box-shadow 0.3s ease;
+    }
+    .navbar.scrolled { box-shadow: 0 4px 0 var(--border); }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: var(--blue);
+      color: #fff;
+      flex-shrink: 0;
+      border: var(--border-w) solid var(--border);
+      box-shadow: 3px 3px 0 var(--border);
+    }
+    .brand-mark svg { width: 22px; height: 22px; }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .brand-text strong { font-size: 1.05rem; color: var(--ink); }
+    .brand-text small { font-size: 0.72rem; color: var(--ink-soft); }
+
+    .nav-menu { display: flex; align-items: center; gap: 6px; }
+    .nav-link {
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+    .nav-link:hover { color: var(--blue-dark); background: rgba(255,255,255,0.5); }
+    .nav-link.active { color: #fff; background: var(--blue); border: 2px solid var(--border); }
+    .nav-cta { margin-left: 8px; padding: 10px 20px; font-size: 0.88rem; }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: var(--border-w) solid var(--border);
+      background: var(--bg-white);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      padding: 12px 11px;
+      box-shadow: 3px 3px 0 var(--border);
+    }
+    .nav-toggle span {
+      display: block;
+      height: 3px;
+      background: var(--ink);
+      border-radius: 0;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+    .nav-toggle span + span { margin-top: 5px; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ===================== HERO / BERANDA ===================== */
+    .hero {
+      position: relative;
+      padding: calc(var(--nav-h) + 70px) 0 90px;
+      background: var(--green-light);
+      border-bottom: var(--border-w) solid var(--border);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      top: -220px;
+      right: -180px;
+      width: 620px;
+      height: 620px;
+      border-radius: 50%;
+      background: var(--yellow);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--yellow);
+      border: var(--border-w) solid var(--border);
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 3px 3px 0 var(--border);
+    }
+    .badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 2px solid var(--border);
+    }
+
+    .hero-text h1 {
+      margin: 20px 0 18px;
+      font-size: clamp(2.3rem, 5.2vw, 3.9rem);
+      line-height: 1.08;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -1px;
+    }
+    .lead {
+      font-size: 1.03rem;
+      color: var(--ink-soft);
+      max-width: 52ch;
+      font-weight: 500;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 34px; }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      gap: 26px;
+      justify-content: start;
+      padding-top: 24px;
+      border-top: var(--border-w) solid var(--border);
+    }
+    .hero-stats li { display: flex; flex-direction: column; }
+    .hero-stats strong { font-size: 1.5rem; color: var(--blue-dark); line-height: 1.2; font-weight: 900; }
+    .hero-stats span { font-size: 0.76rem; color: var(--ink-soft); font-weight: 600; }
+
+    .hero-media { position: relative; width: 100%; max-width: 400px; margin-inline: auto; }
+    .hero-photo {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: var(--border-w) solid var(--border);
+    }
+    .hero-photo img { width: 100%; aspect-ratio: var(--potret); object-fit: cover; }
+
+    .hero-card {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg-white);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      border: var(--border-w) solid var(--border);
+    }
+    .hero-card strong { display: block; font-size: 0.9rem; color: var(--ink); font-weight: 700; }
+    .hero-card small { font-size: 0.74rem; color: var(--ink-soft); }
+    .hero-card-top { top: 26px; left: -26px; background: var(--yellow); }
+    .hero-card-bottom { bottom: 26px; right: -22px; background: var(--blue-light); }
+
+    .icon-pill {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: var(--green-light);
+      color: var(--ink);
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+    }
+    .icon-pill.amber { background: var(--yellow); color: var(--ink); }
+
+    /* ===================== MARQUEE ===================== */
+    .marquee-strip {
+      background: var(--green);
+      color: var(--ink);
+      padding: 13px 0;
+      overflow: hidden;
+      border-top: var(--border-w) solid var(--border);
+      border-bottom: var(--border-w) solid var(--border);
+      font-weight: 700;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 44px;
+      white-space: nowrap;
+      width: max-content;
+      animation: slide 26s linear infinite;
+      font-size: 0.86rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ===================== SECTION HEAD ===================== */
+    .section-head { max-width: 720px; margin-bottom: 48px; }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+      margin-bottom: 10px;
+      background: var(--yellow);
+      padding: 4px 12px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+    }
+    .section-head h2 {
+      font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+      line-height: 1.22;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+    }
+    .section-head p { margin-top: 14px; color: var(--ink-soft); font-size: 0.98rem; font-weight: 500; }
+
+    /* ===================== TENTANG ===================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .about-media { position: relative; padding-bottom: 58px; padding-right: 40px; }
+    .about-main {
+      width: 100%;
+      aspect-ratio: var(--potret);
+      max-height: 540px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      border: var(--border-w) solid var(--border);
+    }
+    .about-badge-img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 42%;
+      aspect-ratio: var(--potret);
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: var(--border-w) solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .about-stamp {
+      position: absolute;
+      top: 22px;
+      left: -18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      background: var(--yellow);
+      color: var(--ink);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      border: var(--border-w) solid var(--border);
+    }
+    .about-stamp strong { font-size: 1.5rem; line-height: 1; }
+    .about-stamp span { font-size: 0.68rem; line-height: 1.25; font-weight: 600; }
+
+    .about-text h2 { font-size: clamp(1.7rem, 3.4vw, 2.35rem); color: var(--ink); font-weight: 900; line-height: 1.22; }
+    .about-text > p { margin-top: 16px; color: var(--ink-soft); font-size: 0.97rem; }
+
+    .info-list { display: grid; gap: 14px; margin-top: 28px; }
+    .info-list li { display: flex; align-items: center; gap: 14px; }
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: var(--yellow);
+      color: var(--ink);
+      border: var(--border-w) solid var(--border);
+      flex-shrink: 0;
+      box-shadow: 3px 3px 0 var(--border);
+    }
+    .info-list strong { display: block; font-size: 0.92rem; color: var(--ink); font-weight: 700; }
+    .info-list small { font-size: 0.82rem; color: var(--ink-soft); }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 60px;
+    }
+    .feature-card {
+      padding: 26px 22px;
+      background: var(--bg-white);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .feature-card:nth-child(1) { background: var(--yellow-light); }
+    .feature-card:nth-child(2) { background: var(--blue-light); }
+    .feature-card:nth-child(3) { background: var(--green-light); }
+    .feature-card:nth-child(4) { background: var(--yellow); }
+    .feature-card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: var(--blue);
+      color: #fff;
+      margin-bottom: 16px;
+      border: var(--border-w) solid var(--border);
+      box-shadow: 3px 3px 0 var(--border);
+    }
+    .feature-card h3 { font-size: 1.02rem; color: var(--ink); margin-bottom: 8px; font-weight: 800; }
+    .feature-card p { font-size: 0.86rem; color: var(--ink-soft); }
+
+    /* ===================== GALERI (SEMUA FOTO POTRET) ===================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: var(--potret);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: zoom-in;
+      border: var(--border-w) solid var(--border);
+      padding: 0;
+      background: var(--yellow);
+      display: block;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: var(--potret);
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+    .gallery-item:hover img { transform: scale(1.07); }
+    .gallery-item figcaption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 22px 16px 13px;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.85));
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: left;
+      opacity: 0;
+      transition: opacity 0.28s ease;
+    }
+    .gallery-item:hover figcaption, .gallery-item:focus-visible figcaption { opacity: 1; }
+
+    /* ===================== VIDEO ===================== */
+    .video-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .video-stage {
+      background: #000;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: var(--border-w) solid var(--border);
+    }
+    .video-stage video { width: 100%; display: block; aspect-ratio: 16 / 9; background: #000; }
+
+    .video-side { display: grid; gap: 12px; max-height: 520px; overflow-y: auto; padding-right: 6px; }
+    .video-side::-webkit-scrollbar { width: 6px; }
+    .video-side::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 0; }
+
+    .video-thumb {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px;
+      background: var(--bg-white);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-align: left;
+      box-shadow: 3px 3px 0 var(--border);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .video-thumb:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow); }
+    .video-thumb.active { background: var(--yellow); }
+    .video-thumb img {
+      width: 64px;
+      aspect-ratio: var(--potret);
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+    }
+    .video-thumb strong { display: block; font-size: 0.85rem; color: var(--ink); font-weight: 700; }
+    .video-thumb small { font-size: 0.74rem; color: var(--ink-soft); }
+
+    .video-actions { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* ===================== PAKET ===================== */
+    .paket-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .paket-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-white);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .paket-card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+
+    .paket-media { position: relative; aspect-ratio: var(--potret); max-height: 420px; overflow: hidden; border-bottom: var(--border-w) solid var(--border); }
+    .paket-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; }
+    .paket-card:hover .paket-media img { transform: scale(1.06); }
+
+    .paket-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 6px 13px;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: var(--yellow);
+      color: var(--ink);
+      border: var(--border-w) solid var(--border);
+      box-shadow: 2px 2px 0 var(--border);
+      text-transform: uppercase;
+    }
+    .paket-tag.green { background: var(--green); color: var(--ink); }
+
+    .paket-body { padding: 24px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+    .paket-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
+    .paket-head h3 { font-size: 1.2rem; color: var(--ink); font-weight: 800; }
+    .paket-price { font-size: 1.1rem; font-weight: 900; color: var(--blue-dark); white-space: nowrap; }
+    .paket-price small { display: block; font-size: 0.68rem; font-weight: 600; color: var(--ink-soft); text-align: right; }
+
+    .paket-desc { margin: 12px 0 16px; font-size: 0.9rem; color: var(--ink-soft); }
+
+    .paket-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .paket-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--yellow-light);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.76rem;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .paket-fitur { display: grid; gap: 8px; margin-bottom: 20px; }
+    .paket-fitur li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 0.85rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .paket-fitur li::before {
+      content: "";
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      margin-top: 4px;
+      border-radius: 3px;
+      background: var(--green);
+      border: 2px solid var(--border);
+      -webkit-mask: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat;
+      mask: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat;
+    }
+
+    .paket-body .btn { margin-top: auto; justify-content: center; }
+
+    /* ===================== KONTAK ===================== */
+    .kontak-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+    }
+    .kontak-info {
+      padding: 30px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: var(--radius);
+      border: var(--border-w) solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .kontak-info h3 { font-size: 1.25rem; color: #fff; margin-bottom: 10px; font-weight: 800; }
+    .kontak-info > p { font-size: 0.9rem; color: #dbeafe; margin-bottom: 22px; }
+    .kontak-info li { display: flex; gap: 13px; align-items: flex-start; margin-bottom: 16px; font-size: 0.88rem; }
+    .kontak-info li svg { flex-shrink: 0; margin-top: 3px; color: var(--yellow); }
+    .kontak-info strong { display: block; color: #fff; font-weight: 700; }
+
+    .form-card {
+      padding: 30px;
+      background: var(--bg-white);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 0.82rem; font-weight: 700; color: var(--ink); }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: var(--yellow-light);
+      box-shadow: 2px 2px 0 var(--border);
+      transition: background 0.2s ease;
+    }
+    .field textarea { resize: vertical; min-height: 96px; }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none;
+      background: #fff;
+      box-shadow: 4px 4px 0 var(--border);
+    }
+    .form-note {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--green-light);
+      border: var(--border-w) solid var(--border);
+      color: var(--ink);
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      display: none;
+    }
+    .form-note.show { display: block; }
+    .form-card .btn { margin-top: 20px; width: 100%; justify-content: center; }
+
+    /* ===================== FOOTER ===================== */
+    .footer { background: #000; color: #fff; padding: 52px 0 26px; border-top: var(--border-w) solid var(--border); }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 34px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #333;
+    }
+    .footer .brand-text strong { color: #fff; }
+    .footer .brand-text small { color: var(--yellow); }
+    .footer h4 { font-size: 0.95rem; color: var(--yellow); margin-bottom: 14px; font-weight: 800; text-transform: uppercase; }
+    .footer p { font-size: 0.88rem; color: #ccc; }
+    .footer-links { display: grid; gap: 9px; font-size: 0.88rem; }
+    .footer-links a { color: #ccc; }
+    .footer-links a:hover { color: var(--yellow); text-decoration: underline; }
+
+    .footer-identity {
+      margin-top: 22px;
+      padding: 18px 20px;
+      background: #111;
+      border-radius: var(--radius-sm);
+      border: 2px solid #333;
+    }
+    .footer-identity table { width: 100%; font-size: 0.84rem; border-collapse: collapse; }
+    .footer-identity td { padding: 4px 0; }
+    .footer-identity td:first-child { color: var(--yellow); width: 140px; font-weight: 700; }
+
+    .footer-bottom {
+      padding-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: #888;
+    }
+
+    /* ===================== LIGHTBOX ===================== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: none;
+      place-items: center;
+      z-index: 200;
+      padding: 24px;
+    }
+    .lightbox.show { display: grid; }
+    .lightbox figure { max-width: min(1000px, 92vw); text-align: center; }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 76vh;
+      aspect-ratio: var(--potret);
+      object-fit: contain;
+      border-radius: var(--radius);
+      box-shadow: 10px 10px 0 var(--yellow);
+      border: var(--border-w) solid var(--border);
+      background: #fff;
+    }
+    .lightbox figcaption { color: var(--yellow); margin-top: 14px; font-size: 0.9rem; font-weight: 700; }
+
+    .lightbox-close {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 46px;
+      height: 46px;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 1.6rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #fff;
+      display: grid;
+      place-items: center;
+      transition: transform 0.15s ease;
+    }
+    .lightbox-close:hover { transform: translate(-2px, -2px); }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 1.5rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #fff;
+      display: grid;
+      place-items: center;
+      transition: transform 0.15s ease;
+    }
+    .lightbox-nav:hover { transform: translateY(-50%) translate(-2px, -2px); }
+    .lightbox-nav.prev { left: 20px; }
+    .lightbox-nav.next { right: 20px; }
+
+    /* ===================== BACKSOUND ===================== */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .bgm-player {
+      position: fixed;
+      left: 22px;
+      bottom: 22px;
+      z-index: 95;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 8px 16px 8px 8px;
+      background: var(--yellow);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+    }
+
+    .bgm-toggle {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--blue);
+      color: #fff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: 2px 2px 0 var(--border);
+      transition: transform 0.15s ease;
+    }
+    .bgm-toggle:hover { transform: translate(-2px, -2px); }
+    .bgm-toggle svg { width: 18px; height: 18px; grid-area: 1 / 1; }
+    .bgm-toggle .ico-pause { display: none; }
+    .bgm-toggle.is-playing .ico-play { display: none; }
+    .bgm-toggle.is-playing .ico-pause { display: block; }
+
+    .bgm-meta { display: flex; flex-direction: column; line-height: 1.25; white-space: nowrap; }
+    .bgm-meta strong { font-size: 0.82rem; color: var(--ink); font-weight: 700; }
+    .bgm-meta small { font-size: 0.7rem; color: var(--ink-soft); }
+
+    .bgm-volwrap { display: grid; place-items: center; }
+    .bgm-volwrap input[type="range"] {
+      width: 86px;
+      accent-color: var(--blue-dark);
+      cursor: pointer;
+    }
+
+    /* ===================== TO TOP ===================== */
+    .to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 48px;
+      height: 48px;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 1.2rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      z-index: 90;
+    }
+    .to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    .to-top:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-hover); }
+
+    /* ===================== REVEAL ===================== */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===================== RESPONSIF ===================== */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 46px; }
+      .hero-media { max-width: 380px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-media { max-width: 460px; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-layout { grid-template-columns: 1fr; }
+      .video-side { max-height: 320px; }
+      .kontak-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-toggle { display: block; }
+      .nav-menu {
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 16px 20px 24px;
+        background: var(--yellow);
+        border-bottom: var(--border-w) solid var(--border);
+        box-shadow: var(--shadow);
+        transform: translateY(-140%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+      }
+      .nav-menu.open { transform: translateY(0); opacity: 1; visibility: visible; }
+      .nav-link { padding: 12px 14px; border-radius: var(--radius-sm); border: 2px solid transparent; }
+      .nav-link.active { border-color: var(--border); }
+      .nav-cta { margin: 8px 0 0; justify-content: center; }
+
+      .paket-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-card-top { left: -10px; }
+      .hero-card-bottom { right: -6px; }
+    }
+
+    @media (max-width: 560px) {
+      .section { padding: 60px 0; }
+      .hero { padding: calc(var(--nav-h) + 44px) 0 64px; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-identity td:first-child { width: 110px; }
+      .about-media { padding-right: 0; padding-bottom: 48px; }
+      .about-stamp { left: 10px; }
+      .lightbox-nav { width: 40px; height: 40px; }
+      .lightbox-nav.prev { left: 6px; }
+      .lightbox-nav.next { right: 6px; }
+      .bgm-player {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        justify-content: flex-start;
+        padding: 8px 12px;
+      }
+      .bgm-volwrap { margin-left: auto; }
+      .bgm-volwrap input[type="range"] { width: 68px; }
+    }
+
+    /* ===================== AKSESIBILITAS ===================== */
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .marquee-track { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn:hover, .feature-card:hover, .paket-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ MENU APLIKASI / NAVIGASI ============ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#beranda" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Bukit Pamoroan</strong>
+          <small>Wisata Alam Majalengka</small>
+        </span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Menu utama aplikasi">
+        <a href="#beranda" class="nav-link active">Beranda</a>
+        <a href="#tentang" class="nav-link">Tentang</a>
+        <a href="#galeri" class="nav-link">Galeri Foto</a>
+        <a href="#video" class="nav-link">Video</a>
+        <a href="#paket" class="nav-link">Paket Wisata</a>
+        <a href="#kontak" class="nav-link">Kontak</a>
+        <a href="#kontak" class="btn btn-primary nav-cta">Pesan Sekarang</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO / BERANDA ============ -->
+  <section class="hero" id="beranda">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="badge"><span class="dot"></span> Destinasi Tour Favorit Majalengka</span>
+        <h1>Menjelajah<br><span class="text-accent">Bukit Pamoroan</span></h1>
+        <p class="lead">
+          Nikmati kedalaman alam Bukit Pamoroan. Suasana asri, berkemah di area
+          terbuka, serta panorama senja yang tak terlupakan. Satu paket, banyak kenangan.
+        </p>
+        <div class="hero-actions">
+          <a href="#paket" class="btn btn-primary">
+            Lihat Paket Wisata
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#video" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Tonton Video
+          </a>
+        </div>
+        <ul class="hero-stats">
+          <li><strong>4.9</strong><span>Rating pengunjung</span></li>
+          <li><strong>7</strong><span>Foto kegiatan</span></li>
+          <li><strong>11</strong><span>Video dokumentasi</span></li>
+          <li><strong>4</strong><span>Paket wisata</span></li>
+        </ul>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-photo">
+          <img src="media/foto-4.jpg" alt="Pemandangan Bukit Pamoroan dari jalur utama">
+        </div>
+        <div class="hero-card hero-card-top">
+          <span class="icon-pill" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 20h20L12 2z"/><path d="m8 20 4-6 4 6"/></svg>
+          </span>
+          <div>
+            <strong>Sunrise Spot</strong>
+            <small>Pemandangan terbaik jam 05.30</small>
+          </div>
+        </div>
+        <div class="hero-card hero-card-bottom">
+          <span class="icon-pill amber" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 20V9M18 20V9M9 20V4h6v16"/></svg>
+          </span>
+          <div>
+            <strong>4 Paket Tersedia</strong>
+            <small>Mulai Rp 75.000</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE FASILITAS ============ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Bukit Pamoroan</span><span>Family Trip</span><span>Sunset Trail</span><span>Spot Foto</span><span>Camping</span><span>Edukasi Alam</span>
+      <span>Bukit Pamoroan</span><span>Family Trip</span><span>Sunset Trail</span><span>Spot Foto</span><span>Camping</span><span>Edukasi Alam</span>
+    </div>
+  </div>
+
+  <!-- ============ TENTANG ============ -->
+  <section class="section" id="tentang">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-media reveal">
+          <img class="about-main" src="media/foto-5.jpg" alt="Suasana kegiatan wisata di Bukit Pamoroan">
+          <img class="about-badge-img" src="media/foto-6.jpg" alt="Detail panorama Bukit Pamoroan">
+          <div class="about-stamp">
+            <strong>5+</strong>
+            <span>Tahun<br>Melayani<br>Pengunjung</span>
+          </div>
+        </div>
+
+        <div class="about-text reveal">
+          <span class="eyebrow">Tentang Destinasi</span>
+          <h2>Mengapa <span class="text-accent">Bukit Pamoroan</span> Wajib Dikunjungi?</h2>
+          <p>
+            Bukit Pamoroan adalah kawasan wisata alam yang berada di Kabupaten
+            Majalengka, Jawa Barat. Dengan lanskap perbukitan yang dikelilingi
+            pepohonan dan udara segar, tempat ini menjadi favorit keluarga,
+            sekolah, maupun fotografer yang mencari ketenangan
+            sekaligus tantangan.
+          </p>
+          <p>
+            Setiap jalur disiapkan dengan baik agar aman dan nyaman, mulai dari
+            mendaki ringan sampai berkemah di area terbuka. Seluruh paket sudah
+            termasuk pemandu lokal, konsumsi, serta perlengkapan keselamatan
+            standar wisata.
+          </p>
+
+          <ul class="info-list">
+            <li>
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <div><strong>Lokasi</strong><small>Kec. Majalengka, Kab. Majalengka, Jawa Barat</small></div>
+            </li>
+            <li>
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </span>
+              <div><strong>Jam Operasional</strong><small>Setiap hari, 07.00 - 18.00 WIB</small></div>
+            </li>
+            <li>
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </span>
+              <div><strong>Harga Masuk</strong><small>Mulai Rp 15.000 per orang</small></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card reveal">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+          </span>
+          <h3>Jalur Pendakian</h3>
+          <p>Tiga jalur dengan tingkat kesulitan berbeda, dari jalur santai 1,2 km sampai jalur trekking 3,5 km.</p>
+        </article>
+        <article class="feature-card reveal">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 18H3L12 3z"/><path d="M12 9v4M12 16h.01"/></svg>
+          </span>
+          <h3>Panorama Luas</h3>
+          <p>Pemandangan cakrawala dan hamparan pegunungan yang megah saat cuaca cerah.</p>
+        </article>
+        <article class="feature-card reveal">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M7 20V10M17 20V10M10 20V4h4v16"/></svg>
+          </span>
+          <h3>Area Berkemah</h3>
+          <p>Colokan tenda, area api unggun, serta toilet bersih. Lengkap untuk kesenangan keluarga.</p>
+        </article>
+        <article class="feature-card reveal">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></svg>
+          </span>
+          <h3>Pemandu Lokal</h3>
+          <p>Setiap perjalanan ditemani pemandu lokal yang berpengalaman serta mengenal warga sekitar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALERI FOTO KEGIATAN WISATA (SEMUA POTRET) ============ -->
+  <section class="section section-alt" id="galeri">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Galeri Foto</span>
+        <h2>Foto Kegiatan Wisata Bukit Pamoroan</h2>
+        <p>Kumpulan dokumentasi kegiatan wisata para pengunjung dengan orientasi potret. Klik salah satu foto untuk melihat ukuran lebih besar.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item reveal">
+          <img src="media/foto-4.jpg" alt="Pemandangan luas Bukit Pamoroan" data-caption="Pemandangan luas area bukit">
+          <figcaption>Pemandangan Luas</figcaption>
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="media/foto-3.jpg" alt="Dokumentasi pengunjung" data-caption="Dokumentasi aktivitas pengunjung">
+          <figcaption>Dokumentasi Pengunjung</figcaption>
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="media/foto-5.jpg" alt="Aktivitas mendaki" data-caption="Aktivitas mendaki menuju puncak">
+          <figcaption>Aktivitas Mendaki</figcaption>
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="media/foto-7.jpg" alt="Spot foto favorit" data-caption="Salah satu spot foto favorit">
+          <figcaption>Spot Foto Favorit</figcaption>
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="media/foto-6.jpg" alt="Detail suasana alam" data-caption="Detail suasana alam yang asri">
+          <figcaption>Suasana Alam</figcaption>
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="media/foto-1.jpg" alt="Panorama Bukit Pamoroan" data-caption="Panorama Bukit Pamoroan dari jalur utama">
+          <figcaption>Panorama Bukit Pamoroan</figcaption>
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="media/foto-2.jpg" alt="Suasana kegiatan wisata" data-caption="Suasana kegiatan wisata di area tengah">
+          <figcaption>Suasana Kegiatan</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VIDEO KEGIATAN WISATA ============ -->
+  <section class="section" id="video">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Video</span>
+        <h2>Link Video Kegiatan Wisata</h2>
+        <p>Video dokumentasi kegiatan wisata di Bukit Pamoroan. Pilih video di samping untuk ditonton.</p>
+      </div>
+
+      <div class="video-layout">
+        <div class="reveal">
+          <div class="video-stage">
+            <video id="mainVideo" controls preload="metadata" poster="media/video-1-poster.jpg" playsinline>
+              <source src="media/video-1.mp4" type="video/mp4">
+              Browser Anda tidak mendukung elemen video.
+            </video>
+          </div>
+          <div class="video-actions">
+            <a class="btn btn-primary" href="media/video-1.mp4" download>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+              Unduh Video Terpilih
+            </a>
+            <a class="btn btn-ghost" href="https://drive.google.com/drive/folders/13Qx3kg8sOEAPA_JXUP_Ra0YuYjFK_Zze" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h6"/></svg>
+              Lihat Semua di Google Drive
+            </a>
+          </div>
+        </div>
+
+        <div class="video-side reveal" id="videoList">
+          <button class="video-thumb active" type="button" data-src="media/video-1.mp4" data-poster="media/video-1-poster.jpg">
+            <img src="media/video-1-poster.jpg" alt="Thumbnail video 1">
+            <span><strong>Video 1</strong><small>Dokumentasi kegiatan</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-2.mp4" data-poster="media/video-2-poster.jpg">
+            <img src="media/video-2-poster.jpg" alt="Thumbnail video 2">
+            <span><strong>Video 2</strong><small>Aktivitas di jalur</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-3.mp4" data-poster="media/video-3-poster.jpg">
+            <img src="media/video-3-poster.jpg" alt="Thumbnail video 3">
+            <span><strong>Video 3</strong><small>Suasana Alam</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-4.mp4" data-poster="media/video-4-poster.jpg">
+            <img src="media/video-4-poster.jpg" alt="Thumbnail video 4">
+            <span><strong>Video 4</strong><small>Cuaca hari ini</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-5.mp4" data-poster="media/video-5-poster.jpg">
+            <img src="media/video-5-poster.jpg" alt="Thumbnail video 5">
+            <span><strong>Video 5</strong><small>Panorama dari atas</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-6.mp4" data-poster="media/video-6-poster.jpg">
+            <img src="media/video-6-poster.jpg" alt="Thumbnail video 6">
+            <span><strong>Video 6</strong><small>Aktivitas berkemah</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-7.mp4" data-poster="media/video-7-poster.jpg">
+            <img src="media/video-7-poster.jpg" alt="Thumbnail video 7">
+            <span><strong>Video 7</strong><small>Menyusuri jalur</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-8.mp4" data-poster="media/video-8-poster.jpg">
+            <img src="media/video-8-poster.jpg" alt="Thumbnail video 8">
+            <span><strong>Video 8</strong><small>Istirahat di pos</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-9.mp4" data-poster="media/video-9-poster.jpg">
+            <img src="media/video-9-poster.jpg" alt="Thumbnail video 9">
+            <span><strong>Video 9</strong><small>Titik favorit</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-10.mp4" data-poster="media/video-10-poster.jpg">
+            <img src="media/video-10-poster.jpg" alt="Thumbnail video 10">
+            <span><strong>Video 10</strong><small>Suasana sore</small></span>
+          </button>
+          <button class="video-thumb" type="button" data-src="media/video-11.mp4" data-poster="media/video-11-poster.jpg">
+            <img src="media/video-11-poster.jpg" alt="Thumbnail video 11">
+            <span><strong>Video 11</strong><small>Dokumentasi lengkap</small></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DAFTAR PAKET WISATA ============ -->
+  <section class="section section-alt" id="paket">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Paket Wisata</span>
+        <h2>Daftar Paket Wisata Bukit Pamoroan</h2>
+        <p>Pilih paket yang paling sesuai dengan rencana bersama keluarga, teman, atau sekolah Anda.</p>
+      </div>
+
+      <div class="paket-grid">
+        <!-- Paket 1 -->
+        <article class="paket-card reveal">
+          <div class="paket-media">
+            <img src="media/foto-6.jpg" alt="Bukit Pamoroan untuk paket Family Trip">
+            <span class="paket-tag">Paling Populer</span>
+          </div>
+          <div class="paket-body">
+            <div class="paket-head">
+              <h3>Paket Family Trip</h3>
+              <div class="paket-price">Rp 275.000<small>/ orang</small></div>
+            </div>
+            <p class="paket-desc">
+              Paket paling populer untuk keluarga. Pengunjung menikmati jalur pendakian
+              ringan, makan siang, dan beristirahat di spot foto favorit bersama pemandu.
+            </p>
+            <div class="paket-meta">
+              <span>5 Jam</span>
+              <span>2 - 8 Orang</span>
+              <span>Jalur Santai</span>
+            </div>
+            <ul class="paket-fitur">
+              <li>Tiket masuk dan surat jalan resmi</li>
+              <li>Pemandu lokal selama perjalanan</li>
+              <li>Konsumsi makan dan snack</li>
+              <li>Perlengkapan keselamatan lengkap</li>
+            </ul>
+            <a class="btn btn-primary" href="#kontak">Pesan Paket Ini</a>
+          </div>
+        </article>
+
+        <!-- Paket 2 -->
+        <article class="paket-card reveal">
+          <div class="paket-media">
+            <img src="media/foto-4.jpg" alt="Paket Sunset Adventure">
+            <span class="paket-tag green">Sunset</span>
+          </div>
+          <div class="paket-body">
+            <div class="paket-head">
+              <h3>Paket Sunset Adventure</h3>
+              <div class="paket-price">Rp 195.000<small>/ orang</small></div>
+            </div>
+            <p class="paket-desc">
+              Nikmati perjalanan menuju titik terbaik untuk melihat matahari terbenam dari
+              atas bukit, sekaligus sesi foto bersama pemandu.
+            </p>
+            <div class="paket-meta">
+              <span>4 Jam</span>
+              <span>2 - 6 Orang</span>
+              <span>Senja</span>
+            </div>
+            <ul class="paket-fitur">
+              <li>Mendaki sampai titik senja terbaik</li>
+              <li>Sesi foto bersama pemandu</li>
+              <li>Minum hangat dan camilan</li>
+              <li>Lampu hiking dan tongkat</li>
+            </ul>
+            <a class="btn btn-primary" href="#kontak">Pesan Paket Ini</a>
+          </div>
+        </article>
+
+        <!-- Paket 3 -->
+        <article class="paket-card reveal">
+          <div class="paket-media">
+            <img src="media/foto-5.jpg" alt="Paket Camping Bukit">
+            <span class="paket-tag green">Camping</span>
+          </div>
+          <div class="paket-body">
+            <div class="paket-head">
+              <h3>Paket Camping Bukit</h3>
+              <div class="paket-price">Rp 425.000<small>/ orang</small></div>
+            </div>
+            <p class="paket-desc">
+              Pengalaman bermalam di area berkemah. Cocok untuk
+              kelompok keluarga dan teman pencinta alam.
+            </p>
+            <div class="paket-meta">
+              <span>1 Malam</span>
+              <span>4 - 10 Orang</span>
+              <span>Bermalam</span>
+            </div>
+            <ul class="paket-fitur">
+              <li>Tenda, sleeping bag, dan alas tidur</li>
+              <li>Api unggun dan hidangan sederhana</li>
+              <li>Pemandu dan pengawas selama semalam</li>
+              <li>MCK dan sanitasi tersedia</li>
+            </ul>
+            <a class="btn btn-primary" href="#kontak">Pesan Paket Ini</a>
+          </div>
+        </article>
+
+        <!-- Paket 4 -->
+        <article class="paket-card reveal">
+          <div class="paket-media">
+            <img src="media/foto-7.jpg" alt="Paket Edukasi Sekolah">
+            <span class="paket-tag green">Edukasi</span>
+          </div>
+          <div class="paket-body">
+            <div class="paket-head">
+              <h3>Paket Edukasi Sekolah</h3>
+              <div class="paket-price">Rp 145.000<small>/ orang</small></div>
+            </div>
+            <p class="paket-desc">
+              Paket outing khusus untuk sekolah dan kelompok belajar.
+              Peserta mengenalkan ekosistem perbukitan dan belajar mengenal satwa liar.
+            </p>
+            <div class="paket-meta">
+              <span>6 Jam</span>
+              <span>20 - 60 Orang</span>
+              <span>Kelompok</span>
+            </div>
+            <ul class="paket-fitur">
+              <li>Program pengenalan ekosistem alam</li>
+              <li>Studi vegetasi dan satwa liar</li>
+              <li>Pre-test dan post-test sederhana</li>
+              <li>Modul pembelajaran untuk guru</li>
+            </ul>
+            <a class="btn btn-primary" href="#kontak">Pesan Paket Ini</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KONTAK / PEMESANAN ============ -->
+  <section class="section" id="kontak">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Reservasi</span>
+        <h2>Ajukan Booking Paket Wisata</h2>
+        <p>Isi formulir berikut dan tim kami akan menghubungi Anda untuk konfirmasi jadwal.</p>
+      </div>
+
+      <div class="kontak-grid">
+        <div class="kontak-info reveal">
+          <h3>Informasi Reservasi</h3>
+          <p>Hubungi kami untuk melihat ketersediaan jadwal secara langsung.</p>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><strong>Alamat</strong>Kec. Majalengka, Kab. Majalengka, Jawa Barat</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+              <div><strong>Telepon</strong>0812-3456-7890</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              <div><strong>Email</strong>booking@bukitpamoroan.id</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div><strong>Layanan</strong>Setiap hari, 07.00 - 18.00 WIB</div>
+            </li>
+          </ul>
+        </div>
+
+        <form class="form-card reveal" id="bookingForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="nama">Nama Lengkap</label>
+              <input type="text" id="nama" name="nama" placeholder="Contoh: Faiz Ahmad Risqullah" required>
+            </div>
+            <div class="field">
+              <label for="telepon">Nomor Telepon</label>
+              <input type="tel" id="telepon" name="telepon" placeholder="08xx-xxxx-xxxx" required>
+            </div>
+            <div class="field">
+              <label for="paketWisata">Paket Wisata</label>
+              <select id="paketWisata" name="paket" required>
+                <option value="">-- Pilih paket --</option>
+                <option>Paket Family Trip - Rp 275.000</option>
+                <option>Paket Sunset Adventure - Rp 195.000</option>
+                <option>Paket Camping Bukit - Rp 425.000</option>
+                <option>Paket Edukasi Sekolah - Rp 145.000</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="tanggal">Tanggal Kunjungan</label>
+              <input type="date" id="tanggal" name="tanggal" required>
+            </div>
+            <div class="field">
+              <label for="jumlah">Jumlah Peserta</label>
+              <input type="number" id="jumlah" name="jumlah" min="1" max="60" value="2" required>
+            </div>
+            <div class="field">
+              <label for="metodeKontak">Metode Kontak</label>
+              <select id="metodeKontak" name="metodeKontak">
+                <option>WhatsApp</option>
+                <option>Telepon</option>
+                <option>Email</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="pesan">Catatan Tambahan</label>
+              <textarea id="pesan" name="pesan" placeholder="Contoh: kami membawa anak usia 8 tahun"></textarea>
+            </div>
+          </div>
+
+          <div class="form-note" id="formNote" role="status">
+            Terima kasih! Permintaan booking Anda sudah kami terima. Tim kami akan menghubungi Anda segera.
+          </div>
+
+          <button class="btn btn-primary" type="submit">Kirim Permintaan Booking</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+            </span>
+            <span class="brand-text">
+              <strong>Bukit Pamoroan</strong>
+              <small>Wisata Alam Majalengka</small>
+            </span>
+          </div>
+          <p style="margin-top:14px; max-width:38ch;">
+            Destinasi wisata alam di Kabupaten Majalengka untuk siapa saja
+            yang ingin menikmati alam terbuka.
+          </p>
+        </div>
+
+        <div>
+          <h4>Menu Aplikasi</h4>
+          <div class="footer-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#tentang">Tentang Destinasi</a>
+            <a href="#galeri">Galeri Foto</a>
+            <a href="#video">Video Kegiatan</a>
+            <a href="#paket">Paket Wisata</a>
+            <a href="#kontak">Kontak</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Hubungi Kami</h4>
+          <div class="footer-links">
+            <span>Kec. Majalengka, Jawa Barat</span>
+            <span>0812-3456-7890</span>
+            <span>booking@bukitpamoroan.id</span>
+            <a href="https://drive.google.com/drive/folders/13Qx3kg8sOEAPA_JXUP_Ra0YuYjFK_Zze" target="_blank" rel="noopener">Media di Google Drive</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-identity">
+        <table>
+          <tr><td>Nama</td><td>Faiz Ahmad Risqullah</td></tr>
+          <tr><td>NPM</td><td>2514101077</td></tr>
+          <tr><td>Program Studi</td><td>Informatika</td></tr>
+          <tr><td>Fakultas</td><td>Teknik</td></tr>
+          <tr><td>Universitas</td><td>Universitas Majalengka</td></tr>
+        </table>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Tugas Pertemuan 3 - Membuat User Interface Promosi Tempat Wisata</span>
+        <span>Universitas Majalengka - Fakultas Teknik - Program Studi Informatika</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ LIGHTBOX GALERI ============ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau foto">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Tutup">&times;</button>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Foto sebelumnya">&#10094;</button>
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Foto berikutnya">&#10095;</button>
+    <figure>
+      <img id="lightboxImg" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <button class="to-top" id="toTop" aria-label="Kembali ke atas">&#8593;</button>
+
+  <!-- ============ BACKSOUND / MUSIK AMBIENT ============ -->
+  <div class="bgm-player" id="bgmPlayer">
+    <button class="bgm-toggle" id="bgmToggle" type="button" aria-label="Putar backsound" aria-pressed="false">
+      <svg class="ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ico-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+    </button>
+    <div class="bgm-meta">
+      <strong>Backsound</strong>
+      <small id="bgmState">Musik: Mati</small>
+    </div>
+    <label class="bgm-volwrap">
+      <span class="sr-only">Volume backsound</span>
+      <input type="range" id="bgmVolume" min="0" max="100" value="40" step="5" aria-label="Volume backsound">
+    </label>
+  </div>
+
+  <audio id="bgm" src="media/backsound-alam.mp3" loop preload="auto"></audio>
+
+  <!-- =========================================================
+       JavaScript internal (satu file HTML)
+       Bukit Pamoroan - Tugas Pertemuan 3
+       ========================================================= -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* ---------- 1. NAVBAR: solid saat di-scroll ---------- */
+      var navbar = document.getElementById("navbar");
+      var toTop = document.getElementById("toTop");
+
+      function onScroll() {
+        var y = window.scrollY || document.documentElement.scrollTop;
+        if (navbar) navbar.classList.toggle("scrolled", y > 20);
+        if (toTop) toTop.classList.toggle("show", y > 500);
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      /* ---------- 2. MENU MOBILE ---------- */
+      var navToggle = document.getElementById("navToggle");
+      var navMenu = document.getElementById("navMenu");
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener("click", function () {
+          var open = navMenu.classList.toggle("open");
+          navToggle.classList.toggle("open", open);
+          navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+
+        // tutup menu setelah link diklik
+        navMenu.addEventListener("click", function (e) {
+          if (e.target.closest("a")) {
+            navMenu.classList.remove("open");
+            navToggle.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        // tutup menu saat klik di luar
+        document.addEventListener("click", function (e) {
+          if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            navMenu.classList.remove("open");
+            navToggle.classList.remove("open");
+          }
+        });
+      }
+
+      /* ---------- 3. SCROLL SPY: tandai menu aktif ---------- */
+      var sections = Array.prototype.slice.call(document.querySelectorAll("section[id]"));
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-link"));
+
+      function spy() {
+        var pos = (window.scrollY || document.documentElement.scrollTop) + 120;
+        var current = sections.length ? sections[0].id : "";
+
+        sections.forEach(function (sec) {
+          if (sec.offsetTop <= pos) current = sec.id;
+        });
+
+        navLinks.forEach(function (link) {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+        });
+      }
+      window.addEventListener("scroll", spy, { passive: true });
+      window.addEventListener("load", spy);
+      spy();
+
+      /* ---------- 4. LIGHTBOX GALERI ---------- */
+      var galleryImgs = Array.prototype.slice.call(document.querySelectorAll(".gallery-item img"));
+      var lb = document.getElementById("lightbox");
+      var lbImg = document.getElementById("lightboxImg");
+      var lbCap = document.getElementById("lightboxCaption");
+      var lbClose = document.getElementById("lightboxClose");
+      var lbPrev = document.getElementById("lightboxPrev");
+      var lbNext = document.getElementById("lightboxNext");
+      var lbIndex = 0;
+
+      function openLightbox(i) {
+        if (!lb || !galleryImgs.length) return;
+        lbIndex = (i + galleryImgs.length) % galleryImgs.length;
+        var img = galleryImgs[lbIndex];
+        lbImg.src = img.getAttribute("src");
+        lbImg.alt = img.getAttribute("alt") || "";
+        lbCap.textContent = img.getAttribute("data-caption") || img.getAttribute("alt") || "";
+        lb.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        if (!lb) return;
+        lb.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+
+      galleryImgs.forEach(function (img, i) {
+        var card = img.closest(".gallery-item");
+        if (!card) return;
+        card.style.cursor = "zoom-in";
+        card.addEventListener("click", function () { openLightbox(i); });
+        card.setAttribute("tabindex", "0");
+        card.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox(i);
+          }
+        });
+      });
+
+      if (lbClose) lbClose.addEventListener("click", closeLightbox);
+      if (lbPrev) lbPrev.addEventListener("click", function () { openLightbox(lbIndex - 1); });
+      if (lbNext) lbNext.addEventListener("click", function () { openLightbox(lbIndex + 1); });
+
+      if (lb) {
+        lb.addEventListener("click", function (e) {
+          if (e.target === lb) closeLightbox();
+        });
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (!lb || !lb.classList.contains("show")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") openLightbox(lbIndex - 1);
+        if (e.key === "ArrowRight") openLightbox(lbIndex + 1);
+      });
+
+      /* ---------- 5. PEMILIH VIDEO ---------- */
+      var mainVideo = document.getElementById("mainVideo");
+      var thumbs = Array.prototype.slice.call(document.querySelectorAll(".video-thumb"));
+      var downloadBtn = document.querySelector('a[download][href*="media/video"]');
+
+      thumbs.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var src = btn.getAttribute("data-src");
+          var poster = btn.getAttribute("data-poster");
+          if (!src || !mainVideo) return;
+
+          mainVideo.pause();
+          mainVideo.setAttribute("poster", poster);
+          mainVideo.innerHTML = '<source src="' + src + '" type="video/mp4">';
+          mainVideo.load();
+
+          thumbs.forEach(function (b) { b.classList.remove("active"); });
+          btn.classList.add("active");
+
+          if (downloadBtn) downloadBtn.setAttribute("href", src);
+        });
+      });
+
+      /* ---------- 6. REVEAL ON SCROLL ---------- */
+      var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+        revealEls.forEach(function (el) { io.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add("visible"); });
+      }
+
+      /* ---------- 7. FORM BOOKING ---------- */
+      var form = document.getElementById("bookingForm");
+      var note = document.getElementById("formNote");
+      var dateInput = document.getElementById("tanggal");
+
+      // batas minimum tanggal = hari ini
+      if (dateInput) {
+        var today = new Date();
+        var iso = today.getFullYear() + "-" +
+          String(today.getMonth() + 1).padStart(2, "0") + "-" +
+          String(today.getDate()).padStart(2, "0");
+        dateInput.setAttribute("min", iso);
+      }
+
+      if (form && note) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          var nama = (document.getElementById("nama") || {}).value || "";
+          note.textContent = "Terima kasih, " + nama +
+            "! Permintaan booking Anda sudah kami terima. Tim kami akan menghubungi Anda segera.";
+          note.classList.add("show");
+          form.reset();
+          note.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+      }
+
+      /* ---------- 8. TOMBOL KEMBALI KE ATAS ---------- */
+      if (toTop) {
+        toTop.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      /* ---------- 9. BACKSOUND / MUSIK AMBIENT ---------- */
+      var bgm = document.getElementById("bgm");
+      var bgmToggle = document.getElementById("bgmToggle");
+      var bgmVol = document.getElementById("bgmVolume");
+      var bgmState = document.getElementById("bgmState");
+      var KEY_ON = "bp-bgm-on";
+      var KEY_VOL = "bp-bgm-volume";
+      var DUCK_VOL = 0.12;      // volume saat video diputar
+      var ducked = false;
+
+      function readStore(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+      }
+      function writeStore(key, val) {
+        try { localStorage.setItem(key, val); } catch (e) { /* mode privat */ }
+      }
+
+      function baseVolume() {
+        return bgmVol ? Math.min(1, Math.max(0, Number(bgmVol.value) / 100)) : 0.4;
+      }
+
+      function applyVolume() {
+        if (!bgm) return;
+        bgm.volume = ducked ? Math.min(DUCK_VOL, baseVolume()) : baseVolume();
+      }
+
+      function renderState() {
+        var playing = !!bgm && !bgm.paused;
+        if (bgmToggle) {
+          bgmToggle.classList.toggle("is-playing", playing);
+          bgmToggle.setAttribute("aria-pressed", playing ? "true" : "false");
+          bgmToggle.setAttribute("aria-label", playing ? "Matikan backsound" : "Putar backsound");
+        }
+        if (bgmState) {
+          bgmState.textContent = playing
+            ? (ducked ? "Musik: Nyala (senang video)" : "Musik: Nyala")
+            : "Musik: Mati";
+        }
+      }
+
+      function startBgm(save) {
+        if (!bgm) return;
+        var p = bgm.play();
+        if (p && p.catch) {
+          p.catch(function () {
+            // browser memblokir autoplay -> tampilkan tombol untuk diklik manual
+            if (save) writeStore(KEY_ON, "off");
+            renderState();
+          });
+        }
+        if (save) writeStore(KEY_ON, "on");
+        renderState();
+      }
+
+      function stopBgm(save) {
+        if (!bgm) return;
+        bgm.pause();
+        if (save) writeStore(KEY_ON, "off");
+        renderState();
+      }
+
+      function setDuck(on) {
+        ducked = !!on;
+        applyVolume();
+        renderState();
+      }
+
+      if (bgm) {
+        // volume: pulihkan dari storage
+        var savedVol = readStore(KEY_VOL);
+        if (savedVol !== null && bgmVol) bgmVol.value = savedVol;
+
+        if (bgmToggle) {
+          bgmToggle.addEventListener("click", function () {
+            if (bgm.paused) startBgm(true); else stopBgm(true);
+          });
+        }
+
+        if (bgmVol) {
+          bgmVol.addEventListener("input", function () {
+            applyVolume();
+            writeStore(KEY_VOL, bgmVol.value);
+          });
+        }
+
+        // musik pelan saat video diputar, kembali normal setelah selesai
+        if (mainVideo) {
+          mainVideo.addEventListener("play", function () { setDuck(true); });
+          ["pause", "ended", "emptied"].forEach(function (ev) {
+            mainVideo.addEventListener(ev, function () { setDuck(false); });
+          });
+        }
+
+        // Attempt otomatis jika sebelumnya user menyalakan (browser bisa menolak)
+        if (readStore(KEY_ON) === "on") startBgm(false);
+      }
+
+      applyVolume();
+      renderState();
+    })();
+  </script>
+</body>
+</html>
